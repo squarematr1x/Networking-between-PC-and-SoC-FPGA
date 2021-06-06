@@ -9,5 +9,6 @@ The source code in this repo can be used to send images from PC to SoC-FPGA. The
 * Implement the image processing HDL modules of your choise in Vivado
 * Create new application project in Xilinx SDK and select lwIP Echo Server template
 * Remove  **`main.c`** and **`echo.c`** from the created project and copy the content of the server folder and paste it into src folder of your project in Xilinx SDK
+* Modify BSP settings and from tcp_options set **`tcp_mss`** from 1460 to 1444 and **`tcp_wnd`** from 2048 to 5776 (these settings will affect the speed of the networking and can be further modified later)
 
 The client folder has the source code for the TCP client running on PC. The server must be running on the SoC before images can be sent from the client.
