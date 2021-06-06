@@ -40,11 +40,9 @@
 #endif
 #include "axi_dma.h"
 
-#define MEMSANITYCHECK 0
-
-static u32* data_out;	// Unprocessed packet
-static u32* data_in;	// Processed packet
-static u32* image;		// Entire received image (can be used for histogram etc.)
+static u32* data_out;               // Unprocessed packet
+static u32* data_in;                // Processed packet
+static u32  image[MAX_IMG_SIZE];	// Entire received image (can be used for histogram etc.)
 
 static u32 last_i = 0;
 static u32 total_bytes = 0;
@@ -61,7 +59,7 @@ void set_buffers() {
 	data_out = (u32*)TX_BUFFER_BASE;
 }
 
-/* Append new data to the end of previously received data */
+/* Append new data to the end of previously received data (not in use atm) */
 void append8(u8* raw_data, u8* new_data, u16_t n) {
 	for (int i = 0; i < n; i++) {
 		raw_data[last_i] = new_data[i];
@@ -74,10 +72,13 @@ void copy32(u32* data, u32* new_data, u16_t n) {
 	for (int i = 0; i < n; i++) {
 		data[i] = new_data[i];
 
+		// If the entire image is needed:
+		// image[last_i] = new_data[i];
+		// last_i++;
 	}
 }
 
-/* Convert u8 image to u32 image (not in use) */
+/* Convert u8 image to u32 image (not in use atm) */
 void img8_to_img32(u32* image_data, u8* raw_data, u32 n) {
 	for (int i = 0; i < n; i++) {
 		int j = 4*i;
@@ -134,11 +135,10 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err) 
 
 	/* Last received TCP package*/
 	if (p->flags) {
-		// u32 image_size = total_bytes/N_CHANNELS;
 		// If first image
 		if (n_images == 0) {
-			// Calculate histogram
-			// Use variables image and image_size here?
+			// Calculate histogram here
+			// u32 image_size = total_bytes/N_CHANNELS;
 			// ...
 		}
 
