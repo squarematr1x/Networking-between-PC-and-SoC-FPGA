@@ -47,18 +47,16 @@ class ImageClientGui():
         begin = time.time()
         tcp_client.connect(host_ip, port)
         tcp_client.send_all(pixel_data)
-        end_a = time.time()
 
         # Receive data from host
         data = tcp_client.recv_all(img_size)
-        end_b = time.time()
+        end = time.time()
         tcp_client.close()
 
         result_path = file_path[:-4] + "_fromSoCFPGA.png"
         saveImage(result_path, data, width, height)
 
-        print("Time to send bytes:", (end_a-begin))
-        print("Time to recv bytes:", (end_b-end_a))
+        print("Time to recv bytes:", (end-begin))
 
     def initFileMenu(self):
         self.app.config(menu=self.menu)
