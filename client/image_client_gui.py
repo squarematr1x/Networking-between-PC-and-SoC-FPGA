@@ -53,7 +53,7 @@ class ImageClientGui():
         end = time.time()
         tcp_client.close()
 
-        result_path = file_path[:-4] + "_fromSoCFPGA.png"
+        result_path = file_path[:-4] + "_from_socfpga.png"
         saveImage(result_path, data, width, height)
 
         print("Time to recv bytes:", (end-begin))
