@@ -7,9 +7,14 @@ class ImageClient():
         self.connected = False
 
     def send_all(self, pixel_data):
+        assert isinstance(pixel_data, bytes), 'pixel_data should be bytes'
+        assert len(pixel_data) > 0, 'pixel_data should be larger than 0'
+
         self.tcp_client.sendall(pixel_data)
 
     def recv_all(self, image_size):
+        assert image_size > 0, 'image_size should be larger than 0'
+
         total_data = b''
         recv_bytes = 0
 
@@ -25,9 +30,15 @@ class ImageClient():
         return total_data
 
     def connect(self, host_ip, port):
+        assert isinstance(host_ip, str), 'host_ip should be string'
+        assert isinstance(port, int), 'port should be integer'
+
         if not self.connected:
-            self.tcp_client.connect((host_ip, port))
-            self.connected = True
+            try:
+                self.tcp_client.connect((host_ip, port))
+                self.connected = True
+            except:
+                print("Error: Cannot establish a connection.")
 
     def close(self):
         self.tcp_client.close()

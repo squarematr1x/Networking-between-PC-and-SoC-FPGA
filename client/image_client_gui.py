@@ -1,5 +1,6 @@
 import os
 import time
+import re
 import tkinter as tk
 from tkinter import *
 from tkinter import filedialog
@@ -33,6 +34,10 @@ class ImageClientGui():
             self.activateSendButton()
 
     def send(self):
+        assert re.match(r'[0-9,. ]+$', self.ip_entry.get()
+                        ), 'host_ip should only contain numbers and dots'
+        assert self.port_entry.get().isdigit() == True, 'port is should be integer'
+
         tcp_client = ImageClient()
         host_ip = self.ip_entry.get()
         port = int(self.port_entry.get())
