@@ -6,7 +6,7 @@ The source code in this repo can be used to send images from PC to SoC-FPGA. The
 
 * Download Vivado Design Tools **version 2018.2**
 * Create project by using this [Zybo-Z7-20-DMA Demo template](https://github.com/Digilent/Zybo-Z7-20-DMA)
-* Implement the image processing HDL modules of your choise in Vivado
+* Implement the image processing HDL modules of your choice in Vivado
 * Create new application project in Xilinx SDK and select lwIP Echo Server template
 * Remove  **`main.c`** and **`echo.c`** from the created project and copy the content of the server folder and paste it into src folder of your project in Xilinx SDK
 * Modify BSP settings and from tcp_options set **`tcp_mss`** from 1460 to 1444 and **`tcp_wnd`** from 2048 to 5776 (these settings will affect the speed of the networking and can be further modified later)
