@@ -19,11 +19,11 @@ The client folder has the source code for the TCP client running on PC. The serv
 
 ### Explanation
 
-Every *RGB* pixel of the image is multiplied by nonuniform scale *A*. The resulting pixel *y*:
+Every *RGB* pixel of the image is multiplied by nonuniform scale *A*. The resulting pixel *y* is:
 
 ![equation](https://github.com/squarematr1x/Networking-between-PC-and-SoC-FPGA/blob/master/screenshot/eq.png?raw=true)
 
-This matrix multiplication is done on the FPGA. Note that A-channel is not modified. This particular matrix multiplication results in peculiar looking images.
+This matrix multiplication is done on the FPGA. Note that A-channel is not modified and overflow is possible. This particular scaling results in peculiar looking images.
 
 ## Known limitations
 
