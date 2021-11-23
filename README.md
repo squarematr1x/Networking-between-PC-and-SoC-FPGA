@@ -13,6 +13,18 @@ The source code in this repo can be used to send images from PC to SoC-FPGA. The
 
 The client folder has the source code for the TCP client running on PC. The server must be running on the SoC before images can be sent from the client.
 
+## Demo
+
+![screenshot](https://github.com/squarematr1x/Networking-between-PC-and-SoC-FPGA/blob/master/screenshot/demo.png?raw=true)
+
+### Explanation
+
+Every *RGB* pixel of the image is multiplied by nonuniform scale *A*. The resulting pixel *y*:
+
+![equation](https://github.com/squarematr1x/Networking-between-PC-and-SoC-FPGA/blob/master/screenshot/eq.png?raw=true)
+
+This matrix multiplication is done on the FPGA. Note that A-channel is not modified. This particular matrix multiplication results in peculiar looking images.
+
 ## Known limitations
 
 * Only works with png files (RGBA).
