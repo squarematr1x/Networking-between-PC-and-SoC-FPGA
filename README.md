@@ -12,3 +12,8 @@ The source code in this repo can be used to send images from PC to SoC-FPGA. The
 * Modify BSP settings and from tcp_options set **`tcp_mss`** from 1460 to 1444 and **`tcp_wnd`** from 2048 to 5776 (these settings will affect the speed of the networking and can be further modified later)
 
 The client folder has the source code for the TCP client running on PC. The server must be running on the SoC before images can be sent from the client.
+
+### Known limitations
+
+* Only works with png files (RGBA).
+* The image size should not be altered (image size in = image size out).
