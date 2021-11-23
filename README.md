@@ -13,7 +13,7 @@ The source code in this repo can be used to send images from PC to SoC-FPGA. The
 
 The client folder has the source code for the TCP client running on PC. The server must be running on the SoC before images can be sent from the client.
 
-### Known limitations
+## Known limitations
 
 * Only works with png files (RGBA).
 * The image size should not be altered (image size in = image size out).
